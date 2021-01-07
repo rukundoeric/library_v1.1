@@ -1,6 +1,27 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
+const bookList = document.querySelector('#bookList');
 const dbref = firebase.database().ref();
 const booksref = dbref.child('books');
+
+function Book(id, author, title, pages, status) {
+  this.id = id;
+  this.author = author;
+  this.title = title;
+  this.pages = pages;
+  this.readStatus = status;
+}
+
+function deleteBook(e) {
+  booksref.child(e.target.dataset.id).remove();
+  refresh();
+}
+
+function changeReadStatus(e) {
+  const value = e.target.dataset.value === 'read';
+  booksref.child(e.target.dataset.id).child('readStatus').set(value);
+  refresh();
+}
 
 function bookItem(book) {
   const itemContainer = document.createElement('div');
@@ -11,11 +32,14 @@ function bookItem(book) {
 
   const pages = document.createElement('span');
   pages.setAttribute('class', 'pages-nbr px-3 pt-1 pb-2');
-  const pageText = document.createTextNode(`${book.pages_num} pages`);
+  const pageText = document.createTextNode(`${book.pages} pages`);
   pages.appendChild(pageText);
 
   const icondiv = document.createElement('div');
-  icondiv.setAttribute('class', 'd-flex justify-content-center align-items-center my-5 book-icon');
+  icondiv.setAttribute(
+    'class',
+    'd-flex justify-content-center align-items-center my-5 book-icon',
+  );
   const icon = document.createElement('i');
   icon.setAttribute('class', 'ti-book');
   icondiv.appendChild(icon);
@@ -41,21 +65,20 @@ function bookItem(book) {
 
   const readbtn = document.createElement('button');
   readbtn.setAttribute('class', 'read');
-  readbtn.appendChild(document.createTextNode('Read'));
-
-  const editbtn = document.createElement('button');
-  editbtn.setAttribute('class', 'edit');
-  editbtn.appendChild(document.createTextNode('Edit'));
+  readbtn.setAttribute('data-id', book.id);
+  const readbtnValue = book.readStatus === true ? 'not read' : 'read';
+  readbtn.setAttribute('data-value', readbtnValue);
+  readbtn.appendChild(document.createTextNode(readbtnValue));
+  readbtn.addEventListener('click', changeReadStatus);
 
   const deletebtn = document.createElement('button');
   deletebtn.setAttribute('class', 'delete');
+  deletebtn.setAttribute('data-id', book.id);
+  deletebtn.addEventListener('click', deleteBook);
   deletebtn.appendChild(document.createTextNode('Delete'));
 
-
   actions.appendChild(readbtn);
-  actions.appendChild(editbtn);
   actions.appendChild(deletebtn);
-
 
   item.appendChild(pages);
   item.appendChild(icondiv);
@@ -66,42 +89,44 @@ function bookItem(book) {
 
   return itemContainer;
 }
-function Book(author, title, pages) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
+
+function listBooks() {
+  booksref.once('value', (snap) => {
+    bookList.innerHTML = '';
+    snap.forEach((childSnapshot) => {
+      const book = new Book(
+        childSnapshot.key,
+        childSnapshot.child('author').val(),
+        childSnapshot.child('title').val(),
+        childSnapshot.child('pages').val(),
+        childSnapshot.child('readStatus').val(),
+      );
+      bookList.appendChild(bookItem(book));
+    });
+  });
 }
 
-function newBook(book) {
-  console.log(book)
-  booksref.push(book)
+function refresh() {
+  listBooks();
 }
 
-const bookList = document.querySelector('#bookList');
+function addBookToLibrary(book) {
+  booksref.push(book);
+  refresh();
+}
 
-bookList.appendChild(bookItem({ title: 'The Stranger', pages_num: 25, author: 'Eric' }));
-
-const my_form = document.querySelector('#my_form');
-my_form.addEventListener('submit', (event) => {
+const myForm = document.querySelector('#my_form');
+myForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(event.target);
-  const book = new Book(data.get('author'), data.get('title'), data.get('pages'));
-  newBook(book);
-})
+  const book = new Book(
+    '',
+    data.get('author'),
+    data.get('title'),
+    data.get('pages'),
+    false,
+  );
+  addBookToLibrary(book);
+});
 
-
-// booksref.once('value', (snap) => {
-//   snap.forEach((childSnapshot) => {
-//     console.log(childSnapshot.child('pages').val());
-//   });
-//   // console.log('initial data loaded!', snap.numChildren());
-// });
-
-// const newref = ref.child('books').child('the_flash_1');
-// newref.remove();
-
-// ref
-//   .orderByKey()
-//   .on('child_added', (snapshot) => {
-//     console.log(snapshot.key);
-//   });
+listBooks();

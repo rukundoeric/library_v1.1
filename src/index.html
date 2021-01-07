@@ -14,32 +14,16 @@
 
 <body>
   <div class="container mt-5 p-5">
-    <div id="bookList" class="list row">
-      <div class="col-lg-3 p-2">
+    <div class="p-1">
+      <div class="p-2">
         <span type="button" class="add_new_book_btn d-flex justify-content-center align-items-center"
           data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="ti-plus"></i>
         </span>
       </div>
+      <div id="bookList" class="list row">
 
-      <!-- <div class="col-lg-3 m-2">
-        <div class="item ">
-          <span class="pages-nbr px-3 pt-1 pb-2">200 pages</span>
-          <div class="d-flex justify-content-center align-items-center my-5 book-icon">
-            <i class="ti-book"></i>
-          </div>
-          <div class="px-3">
-            <h5 class=" title">The Stranger</h5>
-            <span class="author">» &nbsp; Mr. Strange</span>
-          </div>
-          <div class="actions d-flex mb-auto justify-content-between">
-            <button class="read">Read</button>
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-          </div>
-        </div>
-      </div> -->
-
+      </div>
     </div>
   </div>
 
@@ -54,11 +38,11 @@
         <form action="" id="my_form">
           <div class="modal-body">
             <label for="author">Author:</label> <br>
-            <input type="text" name="author" id="" class="mb-2"> <br>
+            <input type="text" required name="author" id="" class="mb-2"> <br>
             <label for="author">Title:</label> <br>
-            <input type="text" name="title" id="" class="mb-2"> <br>
+            <input type="text" required name="title" id="" class="mb-2"> <br>
             <label for="pages">No. of pages:</label> <br>
-            <input type="number" name="pages" id="">
+            <input type="number" required name="pages" id="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
