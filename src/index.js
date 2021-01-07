@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+const dbref = firebase.database().ref();
+const booksref = dbref.child('books');
 
 function bookItem(book) {
   const itemContainer = document.createElement('div');
@@ -64,13 +66,29 @@ function bookItem(book) {
 
   return itemContainer;
 }
+function Book(author, title, pages) {
+  this.author = author;
+  this.title = title;
+  this.pages = pages;
+}
+
+function newBook(book) {
+  console.log(book)
+  booksref.push(book)
+}
 
 const bookList = document.querySelector('#bookList');
 
 bookList.appendChild(bookItem({ title: 'The Stranger', pages_num: 25, author: 'Eric' }));
 
-// const ref = firebase.database().ref();
-// const booksref = ref.child('books');
+const my_form = document.querySelector('#my_form');
+my_form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  const book = new Book(data.get('author'), data.get('title'), data.get('pages'));
+  newBook(book);
+})
+
 
 // booksref.once('value', (snap) => {
 //   snap.forEach((childSnapshot) => {
