@@ -12,8 +12,8 @@ function Book(id, author, title, pages, status) {
   this.readStatus = status;
 }
 
-function deleteBook(e) {
-  booksref.child(e.target.dataset.id).remove();
+function deleteBook({ target: { dataset: { id } } }) {
+  booksref.child(id).remove();
   refresh();
 }
 
