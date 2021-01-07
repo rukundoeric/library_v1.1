@@ -17,7 +17,7 @@ Some of the features also include marking as read or unread and deleting a book.
 
 ## Live Demo
 
-[Live Demo Link](https://rukundoeric.github.io/Conference-page/)
+[Live Demo Link](https://raw.githack.com/rukundoeric/library_v1.1/ft-library/src/index.html)
 
 ## Getting Started
 
