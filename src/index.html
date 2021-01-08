@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/themify-icons/themify-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>Library</title>
+</head>
+
+<body>
+  <div class="container mt-5 p-5">
+    <div class="p-1">
+      <div class="p-2">
+        <span type="button" class="add_new_book_btn d-flex justify-content-center align-items-center"
+          data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="ti-plus"></i>
+        </span>
+      </div>
+      <div id="bookList" class="list row">
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" id="my_form">
+          <div class="modal-body">
+            <label for="author">Author:</label> <br>
+            <input type="text" required name="author" id="" class="mb-2"> <br>
+            <label for="author">Title:</label> <br>
+            <input type="text" required name="title" id="" class="mb-2"> <br>
+            <label for="pages">No. of pages:</label> <br>
+            <input type="number" required name="pages" id="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" >Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js" ></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDTVpauWeDzmnJuPdAlJnUytRpJqlY1Ip4",
+      authDomain: "library-9b65d.firebaseapp.com",
+      projectId: "library-9b65d",
+      storageBucket: "library-9b65d.appspot.com",
+      messagingSenderId: "315237356426",
+      appId: "1:315237356426:web:f8d584c52afab769b72e73",
+      measurementId: "G-JCLY416DF7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous" >
+    </script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button {
+  outline: none;
+}
+
+.container {
+  .add_new_book_btn {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(241, 241, 241);
+    color: rgb(52, 88, 117);
+
+    i {
+      font-size: 60px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      transition: 0.5s all ease-in-out;
+    }
+  }
+
+  .item {
+    border: 5px solid rgb(36, 70, 163);
+    width: 100%;
+    position: relative;
+    height: 300px;
+
+    .pages-nbr {
+      margin: 0;
+      background-color: rgb(36, 70, 163);
+      color: white;
+    }
+
+    .actions {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+
+      button {
+        border: 0;
+        background-color: rgb(211, 211, 211);
+        padding: 10px 15px;
+        font-weight: 700;
+        font-size: 13px;
+      }
+    }
+
+    .title {
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .author {
+      font-weight: 700;
+      font-size: 12px;
+      color: rgb(184, 184, 184);
+    }
+
+    .book-icon {
+      i {
+        font-size: 30px;
+      }
+    }
+  }
+}

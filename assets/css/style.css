@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+input,
+button {
+  outline: none; }
+
+.container .add_new_book_btn {
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: #f1f1f1;
+  color: #345875; }
+  .container .add_new_book_btn i {
+    font-size: 60px; }
+  .container .add_new_book_btn:hover {
+    transform: scale(1.05);
+    transition: 0.5s all ease-in-out; }
+.container .item {
+  border: 5px solid #2446a3;
+  width: 100%;
+  position: relative;
+  height: 300px; }
+  .container .item .pages-nbr {
+    margin: 0;
+    background-color: #2446a3;
+    color: white; }
+  .container .item .actions {
+    width: 100%;
+    position: absolute;
+    bottom: 0; }
+    .container .item .actions button {
+      border: 0;
+      background-color: lightgray;
+      padding: 10px 15px;
+      font-weight: 700;
+      font-size: 13px; }
+  .container .item .title {
+    font-weight: 900;
+    font-size: 18px; }
+  .container .item .author {
+    font-weight: 700;
+    font-size: 12px;
+    color: #b8b8b8; }
+  .container .item .book-icon i {
+    font-size: 30px; }
+
+/*# sourceMappingURL=style.css.map */
